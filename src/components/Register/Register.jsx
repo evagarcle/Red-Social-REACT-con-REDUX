@@ -18,9 +18,9 @@ const Register = () => {
     }
   return (
     <form onSubmit={onSubmit}>
-        <input type="text" name="name" value={name} onChange={onChange} />
-        <input type="email" name="email" value={email} onChange={onChange}/>
-        <input type="password" name="password" value={password} onChange={onChange}/>
+        <input type="text" name="name" value={name} placeholder='Your name' onChange={onChange} />
+        <input type="email" name="email" value={email} placeholder='Your email' onChange={onChange}/>
+        <input type="password" name="password" value={password} placeholder='Your password' onChange={onChange}/>
         <button type="submit">Register</button>
     </form>
   )
