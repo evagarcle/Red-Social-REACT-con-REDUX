@@ -7,7 +7,10 @@ const user = JSON.parse(localStorage.getItem("user")) || null
 
 const initialState = {
   user: user,
-  token: token
+  token: token,
+  isError: false,
+  isSuccess: false,
+  message: ""
 }
 
 export const authSlice = createSlice({
@@ -23,6 +26,10 @@ export const authSlice = createSlice({
       .addCase(logout.fulfilled, (state) => {
         state.user = null
         state.token = ""
+      })
+      .addCase(register.fulfilled, (state, action) => {
+        state.isSuccess = true
+        state.message = action.payload.message
       })
   }
 })

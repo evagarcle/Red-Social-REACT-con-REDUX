@@ -1,17 +1,27 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { register } from '../../features/auth/authSlice'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { isString } from 'antd/es/button'
+import { notification } from 'antd'
 
 const Register = () => {
     const [formData, setFormData] = useState({
-        userName:'',
+        name:'',
         email:'',
         password:'',
-        age:''
     })
-    const {userName,email,password, age} = formData
+    const {name,email,password} = formData
+    const {isSuccess,message,isError} = useSelector((state)=>state.auth)
     const dispatch = useDispatch()
-    // dispatch: paso de redux que no estaba en context pero necesario para pasar las funciones
+
+    useEffect(() => {
+      if(isSuccess){
+        notification.success({
+          message:"Success",
+          description: message
+        })
+      }
+    }, [isSuccess, message])
 
     const onChange = (e)=>{
         setFormData({
@@ -25,10 +35,9 @@ const Register = () => {
     }
   return (
     <form onSubmit={onSubmit}>
-        <input type="text" name="userName" value={userName} placeholder='Your name' onChange={onChange} />
+        <input type="text" name="userName" value={name} placeholder='Your name' onChange={onChange} />
         <input type="email" name="email" value={email} placeholder='Your email' onChange={onChange}/>
         <input type="password" name="password" value={password} placeholder='Your password' onChange={onChange}/>
-        <input type="text" name="age" value={age} placeholder='Your age' onChange={onChange}/>
         <button type="submit">Register</button>
     </form>
   )
