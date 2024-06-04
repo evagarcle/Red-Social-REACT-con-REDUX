@@ -33,4 +33,3 @@ const Register = () => {
 export default Register
 
 
-console.log("Hola")
