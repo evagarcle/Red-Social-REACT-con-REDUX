@@ -16,7 +16,13 @@ const initialState = {
 export const authSlice = createSlice({
   name:"auth",
   initialState,
-  reducers:{},
+  reducers:{
+    reset: (state) => {
+      state.isError = false
+      state.isSuccess = false
+      state.message = ""
+    }
+  },
   extraReducers: (builder) => {
     builder
       .addCase(login.fulfilled, (state, action) => {
@@ -39,7 +45,6 @@ export const authSlice = createSlice({
   }
 })
 
-export default authSlice.reducer
 
 export const register = createAsyncThunk(
   "auth/register", 
@@ -66,3 +71,8 @@ export const logout = createAsyncThunk("auth/logout", async()=>{
     console.error(error)
   }
 })
+
+
+export default authSlice.reducer
+
+export const { reset } = authSlice.actions

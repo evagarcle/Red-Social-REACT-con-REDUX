@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { register } from '../../features/auth/authSlice'
+import { register, reset } from '../../features/auth/authSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { notification } from 'antd'
 
@@ -26,6 +26,7 @@ const Register = () => {
           description:message
         })
       }
+      dispatch(reset())
     }, [isSuccess, message, isError])
 
     const onChange = (e)=>{
