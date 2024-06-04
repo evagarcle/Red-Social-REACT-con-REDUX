@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { register } from '../../features/auth/authSlice'
 import { useDispatch, useSelector } from 'react-redux'
-import { isString } from 'antd/es/button'
 import { notification } from 'antd'
 
 const Register = () => {
@@ -21,7 +20,13 @@ const Register = () => {
           description: message
         })
       }
-    }, [isSuccess, message])
+      if(isError){
+        notification.error({
+          message: "Error!!!",
+          description:message
+        })
+      }
+    }, [isSuccess, message, isError])
 
     const onChange = (e)=>{
         setFormData({
