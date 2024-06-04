@@ -20,6 +20,10 @@ export const authSlice = createSlice({
         state.user = action.payload.user
         state.token = action.payload.token
       })
+      .addCase(logout.fulfilled, (state) => {
+        state.user = null
+        state.token = ""
+      })
   }
 })
 
@@ -36,6 +40,14 @@ export const register = createAsyncThunk("auth/register", async(user)=>{
 export const login = createAsyncThunk("auth/login", async(user)=>{
   try {
     return authService.login(user)    
+  } catch (error) {
+    console.error(error)
+  }
+})
+
+export const logout = createAsyncThunk("auth/logout", async()=>{
+  try {
+    return authService.logout()    
   } catch (error) {
     console.error(error)
   }

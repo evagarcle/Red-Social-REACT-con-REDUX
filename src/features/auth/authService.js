@@ -16,9 +16,23 @@ const login = async (user)=>{
   return res.data
 }
 
+const logout = async () => {
+  const token = localStorage.getItem("token")
+  const res = await axios.delete(API_URL + "/logout", {
+    headers: {
+      Authorization: token
+    }
+  })
+  if (res.data) {
+    localStorage.clear()
+  }
+  return res.data
+}
+
 const authService = {
   register,
-  login
+  login,
+  logout
 }
 
 
