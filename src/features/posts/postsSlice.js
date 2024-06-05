@@ -2,18 +2,19 @@ import postService from "./postsService";
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit'
 
 
+
 const initialState = {
     posts: [],
     isLoading: false,
 };
 
-export const getAll = createAsyncThunk("posts/getAll", async () => {
-    try {
-        return await postService.getAll();
-    } catch (error) {
-        console.error(error);
-    }
-});
+// export const getAll = createAsyncThunk("posts/getAll", async () => {
+//     try {
+//         return await postService.getAll();
+//     } catch (error) {
+//         console.error(error);
+//     }
+// });
 
 export const postSlice = createSlice({
     name: "posts",
@@ -21,9 +22,9 @@ export const postSlice = createSlice({
     reducers: {},
     extraReducers: (buidler) => {
         buidler
-        .addCase(getAll.fulilled, (state, action) => {
-            state.posts = action.payload;
-        })
+        // .addCase(getAll.fulfilled, (state, action) => {
+        //     state.posts = action.payload;
+        // })
     },
 });
 
