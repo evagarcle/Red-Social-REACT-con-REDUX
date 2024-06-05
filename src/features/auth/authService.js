@@ -1,9 +1,9 @@
 import axios from "axios"
 
-const API_URL = "https://proyecto-backend-mongodb-red-social.onrender.com/users"
+const API_URL = "http://localhost:3002/users"
 
 const register = async (user)=>{
-  const res = await axios.post(API_URL + "/", user)
+  const res = await axios.post(API_URL, user)
   return res.data
 }
 
