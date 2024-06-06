@@ -17,7 +17,7 @@ const Header = () => {
         dispatch(logout()
       )}
     >
-      <Link to="/login"> Logout</Link>
+      <Link to="/login"> Logout /</Link>
     </span>
     <span>
         <Link to="/profile"> {user.name} /</Link>

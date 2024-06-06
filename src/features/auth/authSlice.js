@@ -10,8 +10,9 @@ const initialState = {
   token: token,
   isError: false,
   isSuccess: false,
-  msg: ""
-}
+  msg: ""}
+
+
 
 export const authSlice = createSlice({
   name:"auth",
@@ -84,6 +85,7 @@ export const logout = createAsyncThunk("auth/logout", async()=>{
     console.error(error)
   }
 })
+
 
 
 export default authSlice.reducer
