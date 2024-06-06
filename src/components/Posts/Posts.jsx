@@ -6,9 +6,11 @@ import Post from '../Post/Post';
 const Posts = () => {
     const {isLoading} = useSelector((state) => state.posts)
     const dispatch = useDispatch();
+    
     useEffect(() => {
         dispatch(getAll());
     }, [])
+
     if (isLoading) {
         return <h1>Cargando posts...</h1>
     }
