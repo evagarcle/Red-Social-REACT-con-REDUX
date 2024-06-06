@@ -5,12 +5,12 @@ import { notification } from 'antd'
 
 const Register = () => {
     const [formData, setFormData] = useState({
-        username:'',
+        name:'',
         email:'',
         password:'',
-        age:''
+        birthday:''
     })
-    const {username,email,password, age} = formData
+    const {name,email,password, birthday} = formData
     const {isSuccess,message,isError} = useSelector((state)=>state.auth)
     const dispatch = useDispatch()
 
@@ -42,10 +42,10 @@ const Register = () => {
     }
   return (
     <form onSubmit={onSubmit}>
-        <input type="text" name="username" value={username} placeholder='Your name' onChange={onChange} />
+        <input type="text" name="name" value={name} placeholder='Your name' onChange={onChange} />
         <input type="email" name="email" value={email} placeholder='Your email' onChange={onChange}/>
         <input type="password" name="password" value={password} placeholder='Your password' onChange={onChange}/>
-        <input type="text" name="age" value={age} placeholder='Your age' onChange={onChange}/>
+        <input type="date" name="birthday" value={birthday} onChange={onChange}/>
         <button type="submit">Register</button>
     </form>
   )
