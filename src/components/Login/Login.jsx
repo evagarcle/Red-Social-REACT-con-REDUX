@@ -1,13 +1,35 @@
-import { useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { login } from '../../features/auth/authSlice'
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { login, reset } from '../../features/auth/authSlice'
+import { useNavigate } from 'react-router-dom'
+import { notification } from 'antd'
 const Login = () => {
     const [formData, setFormData] = useState({
         email:'',
         password:''
     })
     const {email,password} = formData
+    const {message,isSuccess,isError} = useSelector((state) =>state.auth)
+    const navigate = useNavigate()
     const dispatch = useDispatch()
+
+    useEffect(() => {
+        if(isSuccess){
+            notification.success({
+                message:"Success",
+                description:message
+            })
+            navigate("/profile")
+        }
+        if(isError){
+            notification.error({
+                message:"Error",
+                description:message
+            })
+            navigate("/profile")
+        }
+        dispatch(reset())
+    },[message, isSuccess,isError])
 
     const onChange = (e)=>{
         setFormData({
