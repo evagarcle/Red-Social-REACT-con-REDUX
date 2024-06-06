@@ -6,21 +6,25 @@ import Home from './components/Home/Home'
 import Header from './components/Header/Header'
 import Profile from './components/Profile/Profile'
 import PostDetail from './components/PostDetail/PostDetail'
+import PrivateZone from './guards/PrivateZone'
 
 function App() {
 
   return (
     <>
-    <BrowserRouter>
-    <Header/>
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/profile" element={<Profile />} />
-      <Route path="/register" element={<Register/>}/>
-      <Route path="/login" element={<Login/>}/>
-      <Route path="/post/:_id" element={<PostDetail/>}/>
-    </Routes>
-    </BrowserRouter>
+      <BrowserRouter>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/profile" element={
+            <PrivateZone>
+              <Profile />
+            </PrivateZone>} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/post/:_id" element={<PostDetail />} />
+        </Routes>
+      </BrowserRouter>
     </>
   )
 }
