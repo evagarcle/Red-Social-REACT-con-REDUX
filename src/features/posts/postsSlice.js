@@ -1,4 +1,4 @@
-import postService from "./postsService";
+import postsService from "./postsService";
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit'
 
 
@@ -6,42 +6,43 @@ import {createSlice, createAsyncThunk} from '@reduxjs/toolkit'
 const initialState = {
     posts: [],
     isLoading: false,
+    post: {}
 };
 
-// export const getAll = createAsyncThunk("posts/getAll", async () => {
-//     try {
-//         return await postService.getAll();
-//     } catch (error) {
-//         console.error(error);
-//     }
-// });
-
-export const postSlice = createSlice({
-    name: "posts",
-    initialState,
-    reducers: {},
-    extraReducers: (buidler) => {
-        buidler
-        // .addCase(getAll.fulfilled, (state, action) => {
-        //     state.posts = action.payload;
-        // })
-    },
+export const getAll = createAsyncThunk("posts/getAll", async () => {
+    try {
+        return await postsService.getAll();
+    } catch (error) {
+        console.error(error);
+    }
 });
 
+export const getById = createAsyncThunk("posts/getById", async (id) => {
+    try {
+      return await postsService.getById(id);
+    } catch (error) {
+      console.error(error);
+    }
+  });
+  
 export const postsSlice = createSlice({
     name: "posts",
     initialState,
     reducers: {},
-    extraReducers: (buidler) => {
-        buidler.addCase(getAll.fulfilled, (state, action) => {
+    extraReducers: (builder) => {
+        builder.addCase(getAll.fulfilled, (state, action) => {
             state.posts = action.payload;
             state.isLoading = false;
         });
-        buidler.addCase(getAll.pending, (state) => {
+        builder.addCase(getAll.pending, (state) => {
             state.isLoading = true;
         });
+        builder.addCase(getById.fulfilled, (state, action) => {
+            state.post = action.payload;
+          });
+      
     },
 });
 
-export const { reset } = postSlice.actions;
-export default postSlice.reducer;
+export const { reset } = postsSlice.actions;
+export default postsSlice.reducer;

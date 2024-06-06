@@ -7,8 +7,15 @@ const getAll = async () => {
     return res.data;
 };
 
+const getById = async (id) => {
+    const res = await axios.get(API_URL + "/posts/" + id);
+    return res.data;
+  };
+  
+
 const postService = {
-    getAll
+    getAll,
+    getById
 };
 
 export default postService
