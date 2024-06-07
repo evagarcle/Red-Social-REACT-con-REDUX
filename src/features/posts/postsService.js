@@ -4,6 +4,7 @@ const API_URL = "http://localhost:3002"
 
 const getAll = async () => {
     const token = localStorage.getItem("token")
+    console.log(token);
     const res = await axios.get(API_URL + "/posts", {
         headers: {
           Authorization: token 

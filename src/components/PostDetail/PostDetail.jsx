@@ -8,6 +8,7 @@ const PostDetail = () => {
   const { _id } = useParams();
   const dispatch = useDispatch();
   const { posts } = useSelector((state) => state.posts);
+  
   useEffect(() => {
     dispatch(getById(_id));
   }, []);
