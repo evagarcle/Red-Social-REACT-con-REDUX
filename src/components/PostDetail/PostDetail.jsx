@@ -7,8 +7,8 @@ import { getById } from "../../features/posts/postsSlice";
 const PostDetail = () => {
   const { _id } = useParams();
   const dispatch = useDispatch();
-  const { posts } = useSelector((state) => state.posts);
-  
+  const { post } = useSelector((state) => state.posts);
+
   useEffect(() => {
     dispatch(getById(_id));
   }, []);
@@ -16,8 +16,8 @@ const PostDetail = () => {
   return (
     <div>
       <h1>PostDetail</h1>
-      <p>{posts.title}</p>
-      <p>{posts.body}</p>
+      <p>{post.title}</p>
+      <p>{post.body}</p>
     </div>
   );
 };
