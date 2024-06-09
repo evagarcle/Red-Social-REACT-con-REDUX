@@ -1,19 +1,43 @@
-import { Spin } from "antd"
-import { useSelector } from "react-redux"
-
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { Spin } from 'antd';
+import { getById } from '../../features/posts/postsSlice';
 
 const Profile = () => {
-  const { user } = useSelector((state) => state.auth)
+  const { user, token } = useSelector((state) => state.auth);
+  const { posts, isLoading } = useSelector((state) => state.posts);
+  const dispatch = useDispatch();
 
-  if (!user) {
-    return <Spin/>
+  useEffect(() => {
+    if (user && user._id) {
+      dispatch(getById(user._id));
+    }
+  }, [dispatch, user, token]);
+
+  if (!user || isLoading) {
+    return <Spin />;
   }
+
+  const userPosts = posts.filter(post => post.userId === user._id);
+
   return (
-    <div>
+    <>
       <p>User name: {user.name}</p>
       <p>Email: {user.email}</p>
-    </div>
-  )
-}
+      <div>
+        {userPosts.length > 0 ? (
+          userPosts.map((post) => (
+            <div key={post._id}>
+              <h3>{post.title}</h3>
+              <p>{post.body}</p>
+            </div>
+          ))
+        ) : (
+          <p>No posts available</p>
+        )}
+      </div>
+    </>
+  );
+};
 
-export default Profile
+export default Profile;
