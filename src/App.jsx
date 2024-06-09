@@ -7,6 +7,7 @@ import Header from './components/Header/Header'
 import Profile from './components/Profile/Profile'
 import PostDetail from './components/PostDetail/PostDetail'
 import PrivateZone from './guards/PrivateZone'
+import NewPost from './components/NewPost/NewPost'
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
             </PrivateZone>} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/newPost" element={<NewPost />} />
           {/* <Route path="/posts/:_id" element={<PostDetail />} /> */}
           <Route path="/posts/id/:_id" element={<PostDetail />} />
         </Routes>

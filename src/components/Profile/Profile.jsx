@@ -25,6 +25,7 @@ const Profile = () => {
       <p>User name: {user.name}</p>
       <p>Email: {user.email}</p>
       <div>
+        <h2>* Mis posts *</h2>
         {userPosts.length > 0 ? (
           userPosts.map((post) => (
             <div key={post._id}>
