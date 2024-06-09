@@ -1,5 +1,5 @@
 import postsService from "./postsService";
-import {createSlice, createAsyncThunk} from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
 
 
@@ -19,12 +19,36 @@ export const getAll = createAsyncThunk("posts/getAll", async () => {
 
 export const getById = createAsyncThunk("posts/getById", async (id) => {
     try {
-      return await postsService.getById(id);
+        return await postsService.getById(id);
     } catch (error) {
-      console.error(error);
+        console.error(error);
     }
-  });
-  
+});
+
+export const createPost = createAsyncThunk("posts/createPost", async (post) => {
+    try {
+        return await postsService.createPost(post);
+    } catch (error) {
+        console.error(error);
+    }
+});
+
+export const like = createAsyncThunk("posts/like", async (postId) => {
+    try {
+        return await postsService.like(postId);
+    } catch (error) {
+        console.error(error);
+    }
+});
+
+export const dislike = createAsyncThunk("posts/dislike", async (postId) => {
+    try {
+        return await postsService.dislike(postId);
+    } catch (error) {
+        console.error(error);
+    }
+});
+
 export const postsSlice = createSlice({
     name: "posts",
     initialState,
@@ -39,8 +63,32 @@ export const postsSlice = createSlice({
         });
         builder.addCase(getById.fulfilled, (state, action) => {
             state.post = action.payload;
-          });
-      
+        });
+        builder.addCase(createPost.fulfilled, (state, action) => {
+            state.post = action.payload;
+        });
+        builder.addCase(createPost.rejected, (state, action) => {
+            state.error = action.error.message;
+        });
+        builder.addCase(like.fulfilled, (state, action) => {
+            state.posts = state.posts.map(post =>
+                post._id === action.payload.post._id ? action.payload.post : post
+            );
+            console.log(state.posts);
+        })
+        builder.addCase(like.rejected, (state, action) => {
+            state.error = action.error.message;
+        })
+        builder.addCase(dislike.fulfilled, (state, action) => {
+            state.posts = state.posts.map(post =>
+                post._id === action.payload.post._id ? action.payload.post : post
+            );
+            console.log(state.posts);
+        })
+        builder.addCase(dislike.rejected, (state, action) => {
+            state.error = action.error.message;
+        });
+
     },
 });
 
