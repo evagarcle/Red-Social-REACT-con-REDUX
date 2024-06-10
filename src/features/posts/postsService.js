@@ -59,7 +59,7 @@ const notlike = async (_id) => {
 const postService = {
   getAll,
   getById,
-  createPost,
+  // createPost,
   like,
   notlike
 };
