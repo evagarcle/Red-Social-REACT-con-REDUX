@@ -41,9 +41,9 @@ export const like = createAsyncThunk("posts/like", async (postId) => {
     }
 });
 
-export const dislike = createAsyncThunk("posts/dislike", async (postId) => {
+export const notlike = createAsyncThunk("posts/dislike", async (postId) => {
     try {
-        return await postsService.dislike(postId);
+        return await postsService.notlike(postId);
     } catch (error) {
         console.error(error);
     }
@@ -79,13 +79,13 @@ export const postsSlice = createSlice({
         builder.addCase(like.rejected, (state, action) => {
             state.error = action.error.message;
         })
-        builder.addCase(dislike.fulfilled, (state, action) => {
+        builder.addCase(notlike.fulfilled, (state, action) => {
             state.posts = state.posts.map(post =>
                 post._id === action.payload.post._id ? action.payload.post : post
             );
             console.log(state.posts);
         })
-        builder.addCase(dislike.rejected, (state, action) => {
+        builder.addCase(notlike.rejected, (state, action) => {
             state.error = action.error.message;
         });
 

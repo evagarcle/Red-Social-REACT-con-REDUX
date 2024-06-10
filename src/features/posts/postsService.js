@@ -44,9 +44,9 @@ const like = async (postId) => {
   return res.data;
 };
 
-const dislike = async (postId) => {
+const notlike = async (postId) => {
   const token = localStorage.getItem('token')
-    const res = await axios.put(API_URL + "/posts/dislike/" , postId, {}, {
+    const res = await axios.put(API_URL + "/posts/notlike/" , postId, {}, {
       headers: {
         Authorization: token
       }
@@ -61,7 +61,7 @@ const postService = {
   getById,
   createPost,
   like,
-  dislike
+  notlike
 };
 
 export default postService
