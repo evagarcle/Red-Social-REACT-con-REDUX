@@ -1,23 +1,39 @@
 
 import { Spin } from "antd";
 import React, { useState, useEffect } from "react";
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
+import { HeartOutlined, HeartFilled } from "@ant-design/icons";
+import { like } from "../../features/posts/postsSlice";
 
 const Post = () => {
 
     const { posts, isLoading } = useSelector((state) => state.posts);
+    const { user } = useSelector((state) => state.auth);
+    console.log(user._id);
+
+    const dispatch = useDispatch();
+
 
     if (isLoading) {
-        return <Spin/>
+        return <Spin />
     }
 
+
     const post = posts.map((post) => {
-    return (
+        const isAlreadyLiked = post.likes?.includes(user?._id);
+        return (
             <div className="post" key={post._id}>
-                <Link to = {"/posts/" + "id/" + post._id}>
-                <p>{post.title}</p>
+                <Link to={"/posts/" + "id/" + post._id}>
+                    <p>{post.title}</p>
                 </Link>
+                <span className="wish">{post.likes?.length}</span>
+                {isAlreadyLiked ? (
+                    <HeartFilled onClick={() => console.log("dislike")} />
+                ) : (
+                    <HeartOutlined onClick={() => dispatch(like(post._id))} />
+                )}
+
             </div>
         );
     });

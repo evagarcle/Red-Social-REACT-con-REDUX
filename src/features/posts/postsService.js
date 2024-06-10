@@ -34,9 +34,9 @@ const createPost = async (post) => {
   return res.data
 };
 
-const like = async (postId) => {
+const like = async (_id) => {
   const token = localStorage.getItem('token')
-  const res = await axios.put(API_URL + "/posts/like/", postId, {}, {
+  const res = await axios.put(API_URL + "/posts/like/" + _id, {}, {
     headers: {
       Authorization: token
     }
