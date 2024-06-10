@@ -10,7 +10,6 @@ const Post = () => {
 
     const { posts, isLoading } = useSelector((state) => state.posts);
     const { user } = useSelector((state) => state.auth);
-    console.log(user._id);
 
     const dispatch = useDispatch();
 
