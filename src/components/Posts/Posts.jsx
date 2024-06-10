@@ -15,10 +15,12 @@ const Posts = () => {
         return <h1>Cargando posts...</h1>
     }
     return (
-        <div>
-            <h1>Posts</h1>
+        <>
+            <h2>Posts</h2>
+            <div>
             <Post />
-        </div>
+            </div>
+        </>
     )
 }
 

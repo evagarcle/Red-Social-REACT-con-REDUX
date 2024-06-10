@@ -13,14 +13,14 @@ const Post = () => {
 
     const post = posts.map((post) => {
     return (
-            <div className="post" key={post._id}>
+            <div key={post._id}>
                 <Link to = {"/posts/" + "id/" + post._id}>
                 <p>{post.title}</p>
                 </Link>
             </div>
         );
     });
-    return <div>{post}</div>
+    return <div className='post-container'>{post}</div>
 };
 
 export default Post;

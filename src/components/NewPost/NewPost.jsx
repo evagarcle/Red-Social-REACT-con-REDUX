@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux"
-import { create } from '../../features/posts/postsSlice';
+import { create, getAll } from '../../features/posts/postsSlice';
 import { useNavigate } from 'react-router-dom';
 
 const NewPost = () => {
@@ -9,7 +9,7 @@ const NewPost = () => {
     body:''
     })
     const {title, body} = newPostData
-    const {isSuccess,isError,token,user} = useSelector((state)=>state.auth)
+    const {isSuccess,isError,token,user, userId} = useSelector((state)=>state.auth)
     const {isLoading} = useSelector((state) => state.posts)
     const dispatch = useDispatch();
     const navigate = useNavigate()
@@ -17,14 +17,12 @@ const NewPost = () => {
 
 
     useEffect(() => {
-
-        if (user && user._id) {
-          dispatch(create(user._id));
-        }
-
+      if (isSuccess || isError) {
+        dispatch(getAll())
+      }
 
 
-    }, [isSuccess, isError,dispatch, user, token])
+    }, [isSuccess, isError,dispatch, user, token, userId])
 
     const onChange = (e)=>{
       setNewPostData({

@@ -3,12 +3,10 @@ import {createSlice, createAsyncThunk} from '@reduxjs/toolkit'
 
 
 
-
 const initialState = {
     posts: [],
-    userPosts: [],
     isLoading: false,
-    post: {}
+    post: {},
 };
 
 export const getAll = createAsyncThunk("posts/getAll", async () => {
@@ -19,7 +17,7 @@ export const getAll = createAsyncThunk("posts/getAll", async () => {
     }
 });
 
-export const getByUserId = createAsyncThunk("posts/getByUserId", async (_id) => {
+export const getById = createAsyncThunk("posts/getById", async (_id) => {
     try {
       return await postsService.getById(_id);
     } catch (error) {
@@ -49,15 +47,14 @@ export const postsSlice = createSlice({
         builder.addCase(getAll.pending, (state) => {
             state.isLoading = true;
         });
-        builder.addCase(getByUserId.fulfilled, (state, action) => {
-            state.userPosts = action.payload;
+        builder.addCase(getById.fulfilled, (state, action) => {
+            state.post = action.payload;
         });
         builder.addCase(create.fulfilled, (state, action) => {
             state.posts.push(action.payload)
             state.post = action.payload
-            state.userPosts.push(action.payload)
         });
-        
+       
     },
 });
 
