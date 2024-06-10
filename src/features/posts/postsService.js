@@ -44,9 +44,9 @@ const like = async (_id) => {
   return res.data;
 };
 
-const notlike = async (postId) => {
+const notlike = async (_id) => {
   const token = localStorage.getItem('token')
-    const res = await axios.put(API_URL + "/posts/notlike/" , postId, {}, {
+    const res = await axios.put(API_URL + "/posts/notlike/" + _id, {}, {
       headers: {
         Authorization: token
       }

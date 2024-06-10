@@ -41,9 +41,9 @@ export const like = createAsyncThunk("posts/like", async (_id) => {
     }
 });
 
-export const notlike = createAsyncThunk("posts/notlike", async (postId) => {
+export const notlike = createAsyncThunk("posts/notlike", async (_id) => {
     try {
-        return await postsService.notlike(postId);
+        return await postsService.notlike(_id);
     } catch (error) {
         console.error(error);
     }
