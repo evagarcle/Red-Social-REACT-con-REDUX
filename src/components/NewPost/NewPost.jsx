@@ -14,15 +14,15 @@ const NewPost = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate()
 
-    
+
 
     useEffect(() => {
-      
+
         if (user && user._id) {
           dispatch(create(user._id));
         }
 
-        
+
 
     }, [isSuccess, isError,dispatch, user, token])
 

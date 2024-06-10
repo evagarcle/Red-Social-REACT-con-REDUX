@@ -24,21 +24,35 @@ const getById = async (_id) => {
     return res.data;
   };
 
-const create = async () => {
+const create = async (newPostData) => {
   const token = localStorage.getItem("token")
-  const res = await axios.post(API_URL+ "/posts", {
+  const res = await axios.post(API_URL+ "/posts", newPostData, {
     headers: {
       Authorization: token 
     }
   })
   return res.data
 }
+
+const getByUserId = async (_id) => {
+  const token = localStorage.getItem("token");
+  const res = await axios.get(`${API_URL}/posts/user/${_id}`, {
+    headers: {
+      Authorization: token,
+    },
+  });
+  return res.data;
+}
+
+
   
 
 const postService = {
     getAll,
     getById,
-    create
+    create,
+    getByUserId
+  
 };
 
 export default postService

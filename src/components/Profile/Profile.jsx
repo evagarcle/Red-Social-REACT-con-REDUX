@@ -1,16 +1,16 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Spin } from 'antd';
-import { getById } from '../../features/posts/postsSlice';
+import { getByUserId } from '../../features/posts/postsSlice';
 
 const Profile = () => {
   const { user, token } = useSelector((state) => state.auth);
-  const { posts, isLoading } = useSelector((state) => state.posts);
+  const { userPosts, isLoading } = useSelector((state) => state.posts);
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (user && user._id) {
-      dispatch(getById(user._id));
+      dispatch(getByUserId(user._id));
     }
   }, [dispatch, user, token]);
 
@@ -18,7 +18,7 @@ const Profile = () => {
     return <Spin />;
   }
 
-  const userPosts = posts.filter(post => post.userId === user._id);
+  // const userPosts = posts.filter(post => post.userId === user._id);
 
   return (
     <>
