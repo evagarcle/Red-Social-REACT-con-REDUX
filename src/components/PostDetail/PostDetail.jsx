@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { getById, like, notlike } from "../../features/posts/postsSlice";
 import { Spin } from "antd";
 import { HeartOutlined, HeartFilled } from "@ant-design/icons";
+import Comments from "../Comments/Comments";
 
 const PostDetail = () => {
   const { _id } = useParams();
@@ -49,6 +50,8 @@ const PostDetail = () => {
       ) : (
         <HeartOutlined onClick={handleLike} />
       )}
+
+      <Comments/>
     </div>
   );
 };

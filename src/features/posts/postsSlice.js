@@ -76,6 +76,7 @@ export const postsSlice = createSlice({
             );
             console.log(state.posts);
         })
+        // falta pending
         builder.addCase(like.rejected, (state, action) => {
             state.error = action.error.message;
         })
@@ -85,6 +86,7 @@ export const postsSlice = createSlice({
             );
             console.log(state.posts);
         })
+        // falta pending
         builder.addCase(notlike.rejected, (state, action) => {
             state.error = action.error.message;
         });
