@@ -6,7 +6,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 const initialState = {
     posts: [],
     isLoading: false,
-    post: {}
+    post: {},
 };
 
 export const getAll = createAsyncThunk("posts/getAll", async () => {
@@ -17,9 +17,9 @@ export const getAll = createAsyncThunk("posts/getAll", async () => {
     }
 });
 
-export const getById = createAsyncThunk("posts/getById", async (id) => {
+export const getById = createAsyncThunk("posts/getById", async (_id) => {
     try {
-        return await postsService.getById(id);
+      return await postsService.getById(_id);
     } catch (error) {
         console.error(error);
     }
@@ -49,6 +49,16 @@ export const notlike = createAsyncThunk("posts/notlike", async (_id) => {
     }
 });
 
+export const create = createAsyncThunk("posts/create", async (newPostData) => {
+    try {
+        return await postsService.create(newPostData)
+    } catch (error) {
+        console.error(error)
+    }
+})
+
+
+  
 export const postsSlice = createSlice({
     name: "posts",
     initialState,
@@ -91,6 +101,11 @@ export const postsSlice = createSlice({
             state.error = action.error.message;
         });
 
+        builder.addCase(create.fulfilled, (state, action) => {
+            state.posts.push(action.payload)
+            state.post = action.payload
+        });
+       
     },
 });
 

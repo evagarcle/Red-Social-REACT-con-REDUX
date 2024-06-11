@@ -40,3 +40,10 @@
 .read-the-docs {
   color: #888;
 }
+
+.post-container {
+  display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 20px;
+}

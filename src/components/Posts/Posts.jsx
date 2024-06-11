@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import {useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux"
 import { getAll } from '../../features/posts/postsSlice';
 import Post from '../Post/Post';
@@ -15,10 +15,12 @@ const Posts = () => {
         return <h1>Cargando posts...</h1>
     }
     return (
-        <div>
-            <h1>Posts</h1>
+        <>
+            <h2>Posts</h2>
+            <div>
             <Post />
-        </div>
+            </div>
+        </>
     )
 }
 
