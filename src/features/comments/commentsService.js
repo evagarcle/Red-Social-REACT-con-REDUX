@@ -10,8 +10,7 @@ const addComment = async (_id, comment) => {
           Authorization: token
         }
       });
-      console.log(response);
-      console.log(comment);
+      
     return response.data;
 };
 
