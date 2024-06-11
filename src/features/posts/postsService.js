@@ -24,6 +24,16 @@ const getById = async (_id) => {
   return res.data;
 };
 
+const getPostByTitle = async (title) => {
+  const token = localStorage.getItem("token")
+  const res = await axios.get(API_URL + "/posts/title/" + title, {
+    headers: {
+      Authorization: token
+    }
+  });
+  return res.data;
+};
+
 const like = async (_id) => {
   const token = localStorage.getItem('token')
   const res = await axios.put(API_URL + "/posts/like/" + _id, {}, {
@@ -64,6 +74,7 @@ const postService = {
   like,
   notlike,
   create,
+  getPostByTitle
 
 
 };
