@@ -5,11 +5,13 @@ const API_URL = "http://localhost:3002"
 
 const addComment = async (_id, comment) => {
     const token = localStorage.getItem("token")
-    const response = await axios.post(API_URL + "/comments/postId" + _id, comment, {
+    const response = await axios.post(API_URL + "/comments/postId/" + _id, {comment}, {
         headers: {
           Authorization: token
         }
       });
+      console.log(response);
+      console.log(comment);
     return response.data;
 };
 

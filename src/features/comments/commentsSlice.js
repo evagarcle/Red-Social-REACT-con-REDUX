@@ -12,6 +12,7 @@ export const addComment = createAsyncThunk("comments/addComment", async ({ _id, 
         return await commentsService.addComment(_id, comment);
     } catch (error) {
         console.error(error);
+        throw error;
     }
 });
 
@@ -21,10 +22,9 @@ const commentsSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder.addCase(addComment.fulfilled, (state, action) => {
-            const { _id, comment } = action.payload;
-            state.comments = state.comments.map(post =>
-                post._id === _id ? { ...post, comments: [...post.comments, comment] } : post
-            );
+            const { comment } = action.payload;
+            state.comments.push(comment);
+            state.isLoading = false
         });
         builder.addCase(addComment.pending, (state) => {
             state.isLoading = true;

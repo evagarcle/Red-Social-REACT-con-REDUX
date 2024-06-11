@@ -51,7 +51,7 @@ const PostDetail = () => {
         <HeartOutlined onClick={handleLike} />
       )}
 
-      <Comments/>
+      <Comments post={post}/>
     </div>
   );
 };
