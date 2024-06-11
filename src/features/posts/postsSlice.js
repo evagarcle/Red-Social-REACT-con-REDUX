@@ -25,14 +25,6 @@ export const getById = createAsyncThunk("posts/getById", async (_id) => {
     }
 });
 
-// export const createPost = createAsyncThunk("posts/createPost", async (post) => {
-//     try {
-//         return await postsService.createPost(post);
-//     } catch (error) {
-//         console.error(error);
-//     }
-// });
-
 export const like = createAsyncThunk("posts/like", async (_id) => {
     try {
         return await postsService.like(_id);
@@ -74,12 +66,6 @@ export const postsSlice = createSlice({
         builder.addCase(getById.fulfilled, (state, action) => {
             state.post = action.payload;
         });
-        // builder.addCase(createPost.fulfilled, (state, action) => {
-        //     state.post = action.payload;
-        // });
-        // builder.addCase(createPost.rejected, (state, action) => {
-        //     state.error = action.error.message;
-        // });
         builder.addCase(like.fulfilled, (state, action) => {
             state.posts = state.posts.map(post =>
                 post._id === action.payload.post._id ? action.payload.post : post
