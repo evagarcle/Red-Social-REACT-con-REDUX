@@ -1,6 +1,5 @@
 
 import { Spin } from "antd";
-import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
 import { HeartOutlined, HeartFilled } from "@ant-design/icons";

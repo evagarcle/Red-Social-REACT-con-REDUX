@@ -8,6 +8,7 @@ import Profile from './components/Profile/Profile'
 import PostDetail from './components/PostDetail/PostDetail'
 import PrivateZone from './guards/PrivateZone'
 import NewPost from './components/NewPost/NewPost'
+import Search from './components/Search/Search'
 
 function App() {
 
@@ -26,6 +27,7 @@ function App() {
           <Route path="/newPost" element={<NewPost />} />
           {/* <Route path="/posts/:_id" element={<PostDetail />} /> */}
           <Route path="/posts/id/:_id" element={<PostDetail />} />
+          <Route path="/search/:title" element={<Search />} />
         </Routes>
       </BrowserRouter>
     </>
