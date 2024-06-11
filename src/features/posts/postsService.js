@@ -65,9 +65,6 @@ const create = async (newPostData) => {
 }
 
 
-
-
-
 const postService = {
   getAll,
   getById,
