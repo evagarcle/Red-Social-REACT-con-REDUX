@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addComment } from "../../features/comments/commentsSlice"; // Asegúrate de que la ruta sea correcta
 import { useParams } from "react-router-dom";
@@ -14,16 +14,18 @@ const Comments = () => {
     const comments = post?.commentIds || []; 
 
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if (user) {
-            dispatch(addComment({ _id, comment }));
+            await dispatch(addComment({ _id, comment }));
             setComment("");
-            dispatch(getById(_id));
+            await dispatch(getById(_id));
+
         } else {
             alert("Debes estar logueado para comentar.");
         }
     };
+
 
     return (
         <div>
