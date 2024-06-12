@@ -35,9 +35,9 @@ const NewPost = () => {
         return <h1>Ready to create a new post?...</h1>
     }
 
-    const onSubmit = (e) => {
+    const onSubmit = async (e) => {
       e.preventDefault()
-      dispatch(create(newPostData))
+      await dispatch(create(newPostData))
       navigate("/profile")
   }
     return (

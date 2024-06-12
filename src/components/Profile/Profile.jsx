@@ -2,11 +2,13 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Spin } from 'antd';
 import { deletePostById, getAll } from '../../features/posts/postsSlice';
+import { useNavigate } from 'react-router-dom';
 
 const Profile = () => {
   const { user, token } = useSelector((state) => state.auth);
   const { posts, isLoading } = useSelector((state) => state.posts);
   const dispatch = useDispatch();
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (user && user._id) {
@@ -40,6 +42,7 @@ const Profile = () => {
               <h3>{post.title}</h3>
               <p>{post.body}</p>
               <p>{post.imageUrl && <img src={post.imageUrl} alt="Post Image" />}</p>
+              <button onClick={() => navigate("/updatePost")}>Edit</button>
               <button onClick={() => handleDelete(post._id)}>x</button>
             </div>
           ))

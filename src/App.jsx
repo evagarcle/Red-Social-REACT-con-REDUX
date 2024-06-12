@@ -9,6 +9,7 @@ import PostDetail from './components/PostDetail/PostDetail'
 import PrivateZone from './guards/PrivateZone'
 import NewPost from './components/NewPost/NewPost'
 import Search from './components/Search/Search'
+import UpdatePost from './components/UpdatePost/UpdatePost'
 
 function App() {
 
@@ -25,7 +26,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/newPost" element={<NewPost />} />
-          {/* <Route path="/posts/:_id" element={<PostDetail />} /> */}
+          <Route path="/updatePost" element={<UpdatePost />} />
           <Route path="/posts/id/:_id" element={<PostDetail />} />
           <Route path="/search/:title" element={<Search />} />
         </Routes>
