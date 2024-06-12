@@ -62,9 +62,9 @@ const create = async (newPostData) => {
   return res.data
 };
 
-const updatePost = async (updatedData,_id) => {
+const updatePost = async (object) => {
   const token = localStorage.getItem("token")
-  const res = await axios.post(API_URL + "/posts/id/" + _id, updatedData, {
+  const res = await axios.put(API_URL + "/posts/id/" + object._id, object.updatedData, {
     headers: {
       Authorization: token
     }

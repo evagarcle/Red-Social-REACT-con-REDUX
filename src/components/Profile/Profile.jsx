@@ -42,7 +42,7 @@ const Profile = () => {
               <h3>{post.title}</h3>
               <p>{post.body}</p>
               <p>{post.imageUrl && <img src={post.imageUrl} alt="Post Image" />}</p>
-              <button onClick={() => navigate("/updatePost")}>Edit</button>
+              <button onClick={() => navigate("/id/" + post._id)}>Edit</button>
               <button onClick={() => handleDelete(post._id)}>x</button>
             </div>
           ))

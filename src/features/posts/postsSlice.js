@@ -57,9 +57,9 @@ export const create = createAsyncThunk("posts/create", async (newPostData) => {
     }
 })
 
-export const updatePost = createAsyncThunk("posts/update", async (updatedData, _id) => {
+export const updatePost = createAsyncThunk("posts/update", async (object) => {
     try {
-        return await postsService.updatePost(updatedData, _id)
+        return await postsService.updatePost(object)
     } catch (error) {
         console.error(error)
     }
@@ -117,7 +117,7 @@ export const postsSlice = createSlice({
                 state.posts.push(action.payload)
                 state.post = action.payload
             })
-            
+
             .addCase(updatePost.fulfilled, (state, action) => {
                 state.posts.push(action.payload)
                 state.post = action.payload
