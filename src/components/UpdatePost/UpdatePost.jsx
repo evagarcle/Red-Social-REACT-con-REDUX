@@ -1,50 +1,57 @@
-import {useEffect, useState} from 'react';
-import {useDispatch, useSelector} from "react-redux"
-import { getAll, getById, updatePost } from '../../features/posts/postsSlice';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from "react-redux"
+import { getById, updatePost } from '../../features/posts/postsSlice';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from "react-router-dom";
 
 
 const UpdatePost = () => {
-  const [updatedData, setupdatedData] = useState({
-    title:'',
-    body:''
+    const [updatedData, setupdatedData] = useState({
+        title: '',
+        body: ''
     })
-    const {title, body} = updatedData
+    const { title, body } = updatedData
     const { _id } = useParams();
-    const {isSuccess,isError,token,user, userId} = useSelector((state)=>state.auth)
-    const {isLoading} = useSelector((state) => state.posts)
+    const { isSuccess, isError, token, user, userId } = useSelector((state) => state.auth)
+    const { post, isLoading } = useSelector((state) => state.posts)
     const dispatch = useDispatch();
     const navigate = useNavigate()
 
 
-useEffect(() => {
-    dispatch(getById(_id ))
-}, [])
+    useEffect(() => {
+        dispatch(getById(_id))
+    }, [])
 
-    const onChange = (e)=>{
+    const onChange = (e) => {
         setupdatedData({
-          ...updatedData,
-          [e.target.name]:e.target.value,
-      })
-  }
+            ...updatedData,
+            [e.target.name]: e.target.value,
+        })
+    }
 
     if (isLoading) {
         return <h1>Cargando...</h1>
     }
 
     const onSubmit = async (e) => {
-      e.preventDefault()
-      await dispatch(updatePost({updatedData, _id}))
-      navigate("/profile")
-  }
+        e.preventDefault()
+        await dispatch(updatePost({ updatedData, _id }))
+        navigate("/profile")
+    }
     return (
-        <form onSubmit={onSubmit}>
-            <h1>Edit post</h1>
-            <input type="text" name='title' value={title} placeholder='Title' onChange={onChange} />
-            <input type="texarea" name='body' value={body} placeholder='Body' onChange={onChange} />
-            <button type='submit'>Update</button>
-        </form>
+        <div>
+            <div>
+                <h1>Edit post</h1>
+                <p>{post.title}</p>
+                <p>{post.body}</p>
+                <p>{post.imageUrl && <img src={post.imageUrl} alt="Post Image" />}</p>
+            </div>
+            <form onSubmit={onSubmit}>
+                <input type="text" name='title' value={title} placeholder='Title' onChange={onChange} />
+                <input type="texarea" name='body' value={body} placeholder='Body' onChange={onChange} />
+                <button type='submit'>Update</button>
+            </form>
+        </div>
     )
 }
 
