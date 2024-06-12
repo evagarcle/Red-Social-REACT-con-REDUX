@@ -87,7 +87,6 @@ export const postsSlice = createSlice({
                 state.posts = state.posts.map(post =>
                     post._id === action.payload.post._id ? action.payload.post : post
                 );
-                console.log(state.posts);
             })
             // falta pending
             .addCase(like.rejected, (state, action) => {
@@ -97,7 +96,6 @@ export const postsSlice = createSlice({
                 state.posts = state.posts.map(post =>
                     post._id === action.payload.post._id ? action.payload.post : post
                 );
-                console.log(state.posts);
             })
             // falta pending
             .addCase(notlike.rejected, (state, action) => {
