@@ -24,6 +24,8 @@ const Post = () => {
             <div className="post" key={post._id}>
                 <Link to={"/posts/" + "id/" + post._id}>
                     <p>{post.title}</p>
+                     <p>{post.imageUrl && <img src={post.imageUrl} alt="Post Image" />}</p>
+
                 </Link>
                 <span className="wish">{post.likes?.length}</span>
                 {isAlreadyLiked ? (
@@ -39,3 +41,4 @@ const Post = () => {
 };
 
 export default Post;
+

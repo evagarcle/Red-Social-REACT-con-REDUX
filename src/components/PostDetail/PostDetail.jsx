@@ -44,6 +44,7 @@ const PostDetail = () => {
       <h1>PostDetail</h1>
       <p>{post.title}</p>
       <p>{post.body}</p>
+      <p>{post.imageUrl && <img src={post.imageUrl} alt="Post Image" />}</p>
       <span className="wish">{localLikes?.length}</span>
       {isAlreadyLiked ? (
         <HeartFilled onClick={handleLike} />

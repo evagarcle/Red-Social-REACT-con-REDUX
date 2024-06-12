@@ -31,6 +31,7 @@ const Profile = () => {
             <div key={post._id}>
               <h3>{post.title}</h3>
               <p>{post.body}</p>
+              <p>{post.imageUrl && <img src={post.imageUrl} alt="Post Image" />}</p>
             </div>
           ))
         ) : (
