@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Spin } from 'antd';
-import { getAll } from '../../features/posts/postsSlice';
+import { deletePostById, getAll } from '../../features/posts/postsSlice';
 
 const Profile = () => {
   const { user, token } = useSelector((state) => state.auth);
@@ -18,6 +18,14 @@ const Profile = () => {
     return <Spin />;
   }
 
+
+  const handleDelete = async (_id) => {
+    await dispatch(deletePostById(_id));
+    dispatch(getAll(user._id));
+  }
+
+
+
   const userPosts = posts.filter(post => post.userId === user._id);
 
   return (
@@ -32,6 +40,7 @@ const Profile = () => {
               <h3>{post.title}</h3>
               <p>{post.body}</p>
               <p>{post.imageUrl && <img src={post.imageUrl} alt="Post Image" />}</p>
+              <button onClick={() => handleDelete(post._id)}>x</button>
             </div>
           ))
         ) : (

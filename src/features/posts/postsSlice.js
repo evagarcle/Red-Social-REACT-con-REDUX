@@ -19,7 +19,7 @@ export const getAll = createAsyncThunk("posts/getAll", async () => {
 
 export const getById = createAsyncThunk("posts/getById", async (_id) => {
     try {
-      return await postsService.getById(_id);
+        return await postsService.getById(_id);
     } catch (error) {
         console.error(error);
     }
@@ -27,7 +27,7 @@ export const getById = createAsyncThunk("posts/getById", async (_id) => {
 
 export const getPostByTitle = createAsyncThunk("posts/getPostByTitle", async (title) => {
     try {
-      return await postsService.getPostByTitle(title);
+        return await postsService.getPostByTitle(title);
     } catch (error) {
         console.error(error);
     }
@@ -57,52 +57,72 @@ export const create = createAsyncThunk("posts/create", async (newPostData) => {
     }
 })
 
+export const deletePostById = createAsyncThunk("posts/delete", async (_id) => {
+    try {
+        return await postsService.deletePostById(_id)
+    } catch (error) {
+        console.error(error)
+    }
+})
 
-  
+
+
 export const postsSlice = createSlice({
     name: "posts",
     initialState,
     reducers: {},
     extraReducers: (builder) => {
-        builder.addCase(getAll.fulfilled, (state, action) => {
-            state.posts = action.payload;
-            state.isLoading = false;
-        });
-        builder.addCase(getAll.pending, (state) => {
-            state.isLoading = true;
-        });
-        builder.addCase(getById.fulfilled, (state, action) => {
-            state.post = action.payload;
-        });
-        builder.addCase(like.fulfilled, (state, action) => {
-            state.posts = state.posts.map(post =>
-                post._id === action.payload.post._id ? action.payload.post : post
-            );
-            console.log(state.posts);
-        })
-        // falta pending
-        builder.addCase(like.rejected, (state, action) => {
-            state.error = action.error.message;
-        })
-        builder.addCase(notlike.fulfilled, (state, action) => {
-            state.posts = state.posts.map(post =>
-                post._id === action.payload.post._id ? action.payload.post : post
-            );
-            console.log(state.posts);
-        })
-        // falta pending
-        builder.addCase(notlike.rejected, (state, action) => {
-            state.error = action.error.message;
-        });
+        builder
+            .addCase(getAll.fulfilled, (state, action) => {
+                state.posts = action.payload;
+                state.isLoading = false;
+            })
+            .addCase(getAll.pending, (state) => {
+                state.isLoading = true;
+            })
+            .addCase(getById.fulfilled, (state, action) => {
+                state.post = action.payload;
+            })
+            .addCase(like.fulfilled, (state, action) => {
+                state.posts = state.posts.map(post =>
+                    post._id === action.payload.post._id ? action.payload.post : post
+                );
+            })
+            // falta pending
+            .addCase(like.rejected, (state, action) => {
+                state.error = action.error.message;
+            })
+            .addCase(notlike.fulfilled, (state, action) => {
+                state.posts = state.posts.map(post =>
+                    post._id === action.payload.post._id ? action.payload.post : post
+                );
+            })
+            // falta pending
+            .addCase(notlike.rejected, (state, action) => {
+                state.error = action.error.message;
+            })
 
-        builder.addCase(create.fulfilled, (state, action) => {
-            state.posts.push(action.payload)
-            state.post = action.payload
-        });
-        builder.addCase(getPostByTitle.fulfilled, (state,action) => {
-            state.posts = action.payload
-        })
-       
+            .addCase(create.fulfilled, (state, action) => {
+                state.posts.push(action.payload)
+                state.post = action.payload
+            })
+            .addCase(getPostByTitle.fulfilled, (state, action) => {
+                state.posts = action.payload
+            })
+            .addCase(deletePostById.fulfilled, (state, action) => {
+                state.posts = state.posts.filter(
+                    (post) => post._id !== action.payload,
+                );
+                state.isLoading = false;
+            })
+            .addCase(deletePostById.pending, (state) => {
+                state.isLoading = true;
+            })
+            .addCase(deletePostById.rejected, (state, action) => {
+                state.error = action.payload;
+                state.isLoading = false;
+            })
+
     },
 });
 
