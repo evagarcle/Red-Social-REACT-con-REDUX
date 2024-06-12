@@ -19,7 +19,7 @@ const Comments = () => {
         if (user) {
             await dispatch(addComment({ _id, comment }));
             setComment("");
-            await dispatch(getById(_id));
+            dispatch(getById(_id));
 
         } else {
             alert("Debes estar logueado para comentar.");

@@ -18,9 +18,13 @@ const Profile = () => {
     return <Spin />;
   }
 
-  const handleDelete = () => {
-    dispatch(deletePostById(posts._id))
+
+  const handleDelete = async (_id) => {
+    await dispatch(deletePostById(_id));
+     dispatch(getAll(user._id));
   }
+
+ 
 
   const userPosts = posts.filter(post => post.userId === user._id);
 
@@ -35,7 +39,7 @@ const Profile = () => {
             <div key={post._id}>
               <h3>{post.title}</h3>
               <p>{post.body}</p>
-              <button onClick= { handleDelete }>x</button>
+              <button onClick= { () => handleDelete(post._id) }>x</button>
             </div>
           ))
         ) : (

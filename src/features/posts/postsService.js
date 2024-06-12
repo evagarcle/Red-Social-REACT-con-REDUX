@@ -64,11 +64,12 @@ const create = async (newPostData) => {
 
 const deletePostById = async (_id) => {
   const token = localStorage.getItem('token')
-  const res = await axios.delete(API_URL + "/posts/id/" + _id, {}, {
+  const res = await axios.delete(API_URL + "/posts/id/" + _id, {
     headers: {
       Authorization: token
     }
   });
+  console.log("service", res.data);
   return res.data;
 };
 
