@@ -12,12 +12,12 @@ const Posts = () => {
     }, [dispatch])
 
     if (isLoading) {
-        return <h1 className="text-center my-5">Cargando posts...</h1>
+        return <h1 className="text-center my-5">Loading posts...</h1>
     }
 
     return (
         <div className="container mt-5">
-            <h2 className="text-center mb-4">Todos los posts</h2>
+            <h2 className="text-center mb-4">NEW POSTS</h2>
             <div className="row">
                 <Post />
             </div>

@@ -1,45 +1,82 @@
 .profile-container {
-  text-align: center;
-  margin-top: 20px;
-}
+  .profile-header {
+    background-color: #92ea95;
+    color: rgb(0, 0, 0);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    margin-bottom: 30px;
 
-.profile-header {
-  text-align: center;
-  margin-bottom: 20px;
-  font-size: 18px; /* Tamaño de fuente más pequeño */
-}
+    p {
+      margin: 0;
+      font-size: 1.2rem;
+    }
 
-.post-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+    .sophisticated-header {
+      font-size: 2rem;
+      margin-top: 10px;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      position: relative;
+      display: inline-block;
 
-  .col-md-4 {
-    flex: 0 0 30%;
-    max-width: 30%;
-    margin-bottom: 20px;
-  }
+      &:before,
+      &:after {
+        content: '';
+        position: absolute;
+        width: 50px;
+        height: 2px;
+        background-color: #fff;
+        top: 50%;
+        transform: translateY(-50%);
+      }
 
-  .post-card {
-    height: 100%;
+      &:before {
+        left: -60px;
+      }
 
-    img {
-      width: 100%;
-      height: auto;
+      &:after {
+        right: -60px;
+      }
     }
   }
 
-  @media (max-width: 768px) {
-    .col-md-4 {
-      flex: 0 0 48%;
-      max-width: 48%;
-    }
-  }
+  .post-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
 
-  @media (max-width: 576px) {
-    .col-md-4 {
-      flex: 0 0 100%;
-      max-width: 100%;
+    .post-card {
+      flex: 1 1 calc(33.333% - 20px);
+      margin: 10px 0;
+
+      .card-body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+
+        h3 {
+          font-size: 1.5rem;
+          margin-bottom: 10px;
+        }
+
+        p {
+          font-size: 1rem;
+          margin-bottom: 10px;
+        }
+
+        img {
+          max-width: 100%;
+          height: auto;
+          margin-bottom: 15px;
+        }
+
+        .btn {
+          width: 100%;
+          margin-top: 10px;
+        }
+      }
     }
   }
 }
