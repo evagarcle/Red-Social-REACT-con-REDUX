@@ -1,0 +1,93 @@
+.update-post-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+
+  .current-post {
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 20px;
+
+    .header {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: #007bff;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    .post-card {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+
+      .card-body {
+        padding: 20px;
+
+        .current-title {
+          font-size: 1.5rem;
+          font-weight: bold;
+          margin-bottom: 10px;
+        }
+
+        .current-body {
+          font-size: 1.2rem;
+          color: #555;
+        }
+      }
+
+      .current-image {
+        width: 400px;
+        height: 200px;
+        height: auto;
+        display: block;
+      }
+
+      .button-container {
+        display: flex;
+        justify-content: flex-end;
+        width: 100%;
+        padding: 10px;
+
+        .btn {
+          margin-left: 10px;
+        }
+      }
+    }
+  }
+
+  .update-form {
+    margin-bottom: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
+
+    .form-control {
+      width: 100%;
+      margin-bottom: 15px;
+      padding: 10px;
+      font-size: 1rem;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 10px;
+      font-size: 1.2rem;
+    }
+  }
+}
+
+.loading {
+  text-align: center;
+  font-size: 1.5rem;
+  color: #007bff;
+  margin-top: 50px;
+}
