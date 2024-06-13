@@ -1,0 +1,38 @@
+.post-container {
+  display: flex;
+  justify-content: center;
+
+  .row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+  }
+
+  .col-md-4 {
+      flex: 0 0 30%;
+      max-width: 30%;
+  }
+
+  .post-card {
+      height: 100%;
+
+      img {
+          width: 100%;
+          height: auto;
+      }
+  }
+
+  @media (max-width: 768px) {
+      .col-md-4 {
+          flex: 0 0 48%;
+          max-width: 48%;
+      }
+  }
+
+  @media (max-width: 576px) {
+      .col-md-4 {
+          flex: 0 0 100%;
+          max-width: 100%;
+      }
+  }
+}

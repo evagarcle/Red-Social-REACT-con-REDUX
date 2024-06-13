@@ -1,0 +1,37 @@
+.new-post-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.new-post-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.new-post-form h1 {
+  margin-bottom: 20px;
+}
+
+.new-post-form input[type="text"],
+.new-post-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+}
+
+.new-post-form button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.new-post-form button:hover {
+  background-color: #0056b3;
+}

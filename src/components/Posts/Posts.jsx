@@ -1,26 +1,27 @@
-import {useEffect} from 'react';
-import {useDispatch, useSelector} from "react-redux"
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from "react-redux"
 import { getAll } from '../../features/posts/postsSlice';
 import Post from '../Post/Post';
 
 const Posts = () => {
-    const {isLoading} = useSelector((state) => state.posts)
+    const { isLoading } = useSelector((state) => state.posts)
     const dispatch = useDispatch();
     
     useEffect(() => {
         dispatch(getAll());
-    }, [])
+    }, [dispatch])
 
     if (isLoading) {
-        return <h1>Cargando posts...</h1>
+        return <h1 className="text-center my-5">Cargando posts...</h1>
     }
+
     return (
-        <>
-            <h2>Posts</h2>
-            <div>
-            <Post />
+        <div className="container mt-5">
+            <h2 className="text-center mb-4">Todos los posts</h2>
+            <div className="row">
+                <Post />
             </div>
-        </>
+        </div>
     )
 }
 
