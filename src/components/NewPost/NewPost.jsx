@@ -47,7 +47,7 @@ const NewPost = () => {
       <form className="new-post-form" onSubmit={onSubmit}>
         <h1>Create a new post</h1>
         {error && <p className="error-message">{error}</p>}
-        
+
         <input
           type="text"
           name="title"

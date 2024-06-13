@@ -5,16 +5,19 @@ import { useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootswatch/dist/lux/bootstrap.min.css';
 
-
 const Header = () => {
   const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const [search, setSearch] = useState("");
   const navigate = useNavigate();
 
-  const handleSearch = (e) => {
+  const handleSearchChange = (e) => {
     setSearch(e.target.value);
+  };
+
+  const handleSearchKeyDown = (e) => {
     if (e.key === "Enter") {
+      e.preventDefault();
       navigate("/search/" + search);
       setSearch("");
     }
@@ -78,14 +81,14 @@ const Header = () => {
               </>
             )}
           </ul>
-          <form className="d-flex">
+          <form className="d-flex" onSubmit={(e) => e.preventDefault()}>
             <input
               type="text"
               className="form-control me-2"
               name="search"
               value={search}
-              onChange={handleSearch}
-              onKeyUp={handleSearch}
+              onChange={handleSearchChange}
+              onKeyDown={handleSearchKeyDown}
               placeholder="Search"
             />
           </form>
