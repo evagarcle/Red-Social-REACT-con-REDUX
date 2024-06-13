@@ -5,6 +5,7 @@ import { getById, like, notlike } from "../../features/posts/postsSlice";
 import { Spin } from "antd";
 import { HeartOutlined, HeartFilled } from "@ant-design/icons";
 import Comments from "../Comments/Comments";
+import './PostDetail.scss';
 
 const PostDetail = () => {
   const { _id } = useParams();
@@ -40,19 +41,21 @@ const PostDetail = () => {
   };
 
   return (
-    <div>
-      <h1>PostDetail</h1>
-      <p>{post.title}</p>
-      <p>{post.body}</p>
-      <p>{post.imageUrl && <img src={post.imageUrl} alt="Post Image" />}</p>
-      <span className="wish">{localLikes?.length}</span>
-      {isAlreadyLiked ? (
-        <HeartFilled onClick={handleLike} />
-      ) : (
-        <HeartOutlined onClick={handleLike} />
-      )}
-
-      <Comments post={post}/>
+    <div className="post-detail-container">
+      <div className="post-content">
+        <h1 className="post-title">{post.title}</h1>
+        <p className="post-body">{post.body}</p>
+        {post.imageUrl && <img src={post.imageUrl} alt="Post Image" className="post-image" />}
+        <div className="post-actions">
+          <span className="wish">{localLikes?.length}</span>
+          {isAlreadyLiked ? (
+            <HeartFilled className="like-icon" onClick={handleLike} />
+          ) : (
+            <HeartOutlined className="like-icon" onClick={handleLike} />
+          )}
+        </div>
+      </div>
+      <Comments post={post} />
     </div>
   );
 };

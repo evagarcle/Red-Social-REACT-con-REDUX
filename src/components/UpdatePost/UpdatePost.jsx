@@ -71,13 +71,14 @@ const UpdatePost = () => {
             </div>
             <form onSubmit={onSubmit}>
                 {error && <p className="error-message">{error}</p>}
-                <input type="text" name='title' value={title} placeholder='Title' onChange={onChange} />
-                <textarea name='body' value={body} placeholder='Body' onChange={onChange} />
+                <input type="text" name='title' value={title} placeholder='Title' onChange={onChange} className="form-control mb-3" />
+                <textarea name='body' value={body} placeholder='Body' onChange={onChange} className="form-control mb-3"/>
                 <button type='submit'>Update</button>
+           
             </form>
         </div>
-    );
-};
+    )
+}
 
 export default UpdatePost;
 
