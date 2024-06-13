@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux";
 import { getById, updatePost } from '../../features/posts/postsSlice';
-import { useNavigate } from 'react-router-dom';
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from 'react-router-dom';
 import './UpdatePost.scss';
 
 const UpdatePost = () => {
@@ -51,7 +50,7 @@ const UpdatePost = () => {
     };
 
     if (isLoading) {
-        return <h1 className="loading">Cargando...</h1>;
+        return <h1 className="loading">Loading...</h1>;
     }
 
     return (
@@ -59,7 +58,7 @@ const UpdatePost = () => {
             <div className="current-post">
                 <div className="card post-card">
                     <div className="card-body">
-                        <p className="current-title">{post.title}</p>
+                        <h2 className="current-title">{post.title}</h2>
                         <p className="current-body">{post.body}</p>
                     </div>
                     {post.imageUrl && <img src={post.imageUrl} alt="Post Image" className="current-image" />}
@@ -69,16 +68,14 @@ const UpdatePost = () => {
                     </div>
                 </div>
             </div>
-            <form onSubmit={onSubmit}>
+            <form onSubmit={onSubmit} className="update-form">
                 {error && <p className="error-message">{error}</p>}
                 <input type="text" name='title' value={title} placeholder='Title' onChange={onChange} className="form-control mb-3" />
                 <textarea name='body' value={body} placeholder='Body' onChange={onChange} className="form-control mb-3"/>
-                <button type='submit'>Update</button>
-           
+                <button type='submit' className="btn btn-primary">Update</button>
             </form>
         </div>
     )
 }
 
 export default UpdatePost;
-
