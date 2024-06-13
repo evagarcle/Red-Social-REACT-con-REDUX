@@ -54,12 +54,6 @@ const UpdatePost = () => {
         return <h1 className="loading">Cargando...</h1>;
     }
 
-    const onSubmit = async (e) => {
-        e.preventDefault();
-        await dispatch(updatePost({ updatedData, _id }));
-        navigate("/profile");
-    }
-
     return (
         <div className="update-post-container">
             <div className="current-post">
@@ -86,4 +80,4 @@ const UpdatePost = () => {
 };
 
 export default UpdatePost;
-export default UpdatePost;
+
