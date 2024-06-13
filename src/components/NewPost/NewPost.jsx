@@ -9,6 +9,7 @@ const NewPost = () => {
     title: '',
     body: ''
   });
+  const [error, setError] = useState('');
 
   const { title, body } = newPostData;
   const { isSuccess, isError, token, user, userId } = useSelector((state) => state.auth);
@@ -31,6 +32,12 @@ const NewPost = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    if (!title || !body) {
+      setError('Both title and body are required.');
+      return;
+    }
+    setError('');
+
     await dispatch(create(newPostData));
     navigate("/profile");
   };
@@ -39,6 +46,8 @@ const NewPost = () => {
     <div className="new-post-container">
       <form className="new-post-form" onSubmit={onSubmit}>
         <h1>Create a new post</h1>
+        {error && <p className="error-message">{error}</p>}
+        
         <input
           type="text"
           name="title"
