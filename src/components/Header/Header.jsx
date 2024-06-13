@@ -5,11 +5,15 @@ import { useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootswatch/dist/lux/bootstrap.min.css';
 
+
 const Header = () => {
   const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const [search, setSearch] = useState("");
   const navigate = useNavigate();
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleToggle = () => setIsOpen(!isOpen);
 
   const handleSearchChange = (e) => {
     setSearch(e.target.value);
@@ -34,10 +38,11 @@ const Header = () => {
           aria-controls="navbarNav"
           aria-expanded="false"
           aria-label="Toggle navigation"
+          onClick={handleToggle}
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse" id="navbarNav">
+        <div className={`collapse navbar-collapse ${isOpen ? 'show' : ''}`} id="navbarNav">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
               <Link className="nav-link" to="/">
