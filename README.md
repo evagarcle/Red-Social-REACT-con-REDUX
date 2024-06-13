@@ -1,6 +1,6 @@
 # Red Social - Proyecto Frontend
 
-Este proyecto frontend es parte de una red social desarrollada utilizando React, Redux y desplegada en Amazon Web Services (AWS). Permite a los usuarios registrarse, iniciar sesión, publicar mensajes, interactuar con publicaciones (editar, eliminar, dar/quitar like, comentar), buscar posts, entre otras funcionalidades.
+Este proyecto frontend es parte de una red social desarrollada utilizando React, Redux y desplegada en VERCEL. Permite a los usuarios registrarse, iniciar sesión, publicar mensajes, interactuar con publicaciones (editar, eliminar, dar/quitar like, comentar), buscar posts, entre otras funcionalidades.
 
 ![Captura de pantalla 2024-06-13 151318](https://github.com/evagarcle/Red-Social-REACT-con-REDUX/assets/160127899/cf0a3557-b339-429e-8227-8accd1e4ba5d)
 
