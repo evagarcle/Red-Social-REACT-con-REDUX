@@ -36,7 +36,7 @@ Este proyecto frontend es parte de una red social desarrollada utilizando React,
 - **Redux:** Para la gestión del estado global de la aplicación.
 - **React Router:** Para el enrutamiento dentro de la aplicación.
 - **SASS y Bootswatch:** Para estilos y diseño responsivo.
-- **AWS:** Plataforma utilizada para el despliegue del frontend en producción.
+- **VERCEL:** Plataforma utilizada para el despliegue del frontend en producción.
 
 ## Instalación y Uso
 
